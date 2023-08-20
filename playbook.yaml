@@ -1,9 +1,0 @@
----
-- hosts: hetzner
-  become: yes
-  become_user: root
-  vars:
-    kubernetes_allow_pods_on_control_plane: true
-    
-  roles:
-    - role: k3s

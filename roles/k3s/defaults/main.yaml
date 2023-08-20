@@ -1,4 +1,0 @@
----
-# Settings to k3s
-installation_script_url: https://get.k3s.io
-installation_script_path: /tmp/k3s-install.sh
