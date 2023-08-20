@@ -13,7 +13,7 @@ To run playbooks ssh private key is needed so keys should be placed in keys dire
 
 ## Example Playbook
 
-"""yaml
+"""
 - hosts: all
   become: true
   roles:
