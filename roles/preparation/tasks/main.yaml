@@ -1,0 +1,11 @@
+---
+- name: Checks if python is installed and install if not
+  package:
+    name: "python{{ python_version }}"
+    state: present
+
+- name: Update the default Python version
+  lineinfile:
+    path: ~/.bashrc
+    line: 'export PATH="/path/to/python3.9:$PATH"'
+  
