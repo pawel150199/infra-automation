@@ -1,0 +1,35 @@
+---
+- name: Nextcloud installation
+  block:
+    - name: Add line to repositories file
+      lineinfile:
+        path: /etc/apk/repositories
+        line: "http://ftp.halifax.rwth-aachen.de/alpine/v3.13/community"
+        state: present
+        insertafter: EOF
+    
+    - name: Update apk cache
+      community.general.apk:
+        update_cache: yes
+
+    - name: Install docker
+      community.general.apk:
+        name: 
+          - docker
+          - docker-compose
+        update_cache: true
+    
+    - name: Restart docker service
+      ansible.builtin.service:
+        name: docker
+        state: restarted
+
+    - name: Create docker-compose.yaml file
+      ansible.builtin.template:
+        src: templates/docker-compose.yaml.j2
+        dest: /frog/docker-compose.yaml
+
+    - name: Start Nextcloud application
+      ansible.builtin.shell: |
+        cd /frog/
+        docker-compose up -d

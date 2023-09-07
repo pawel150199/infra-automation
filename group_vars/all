@@ -1,1 +1,13 @@
-# information for all hosts
+# Information for all hosts
+
+# Container name
+container_name: <container_name>
+
+# Nextcloud config
+nextcloud_port: <nextcloud_port>
+
+# Mysql config
+mysql_user: <mysql_user>
+mysql_password: <password>
+mysql_database: <database>
+mysql_host: <host>

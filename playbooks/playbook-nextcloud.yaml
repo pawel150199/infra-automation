@@ -1,0 +1,9 @@
+---
+- name: Install nexcloud in docker
+  hosts: all # type here your host defined in inventory or hosts file
+  become: true
+  #vars:
+  #  ansible_ssh_port: 10821
+
+  roles:
+    - nextcloud

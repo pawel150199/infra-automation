@@ -1,0 +1,7 @@
+---
+- hosts: all # type here your host defined in inventory or hosts file
+  become: true
+  become_user: root
+
+  roles:
+    - role: preparation
