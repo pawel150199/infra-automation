@@ -1,0 +1,44 @@
+---
+- name: ZSH setup playbook
+  hosts: all
+  become: true
+  tasks:
+    - name: Install base zsh and curl
+      package:
+        update_cache: true
+        name:
+          - zsh
+          - curl
+
+    - name: Check if bash history exists
+      stat:
+        path: "~/.bash_history"
+      register: bash_history_stat
+    
+    - name: Move bash history to zsh history
+      shell: strings -eS ~/.bash_history  >> ~/.zshhistory
+      args:
+        executable: /usr/bin/bash
+      when: bash_history_stat.stat.exists
+
+    - name: change shell
+      user:
+        name: "{{ ansible_user }}"
+        shell: /bin/zsh
+    
+    - name: Install zimfw using script
+      ignore_errors: true
+      register: zimfw_output
+      shell:  "curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh"
+      args:
+        executable: /usr/bin/zsh
+      changed_when: "'already_exists' not in zimfw_output.stderr"
+      failed_when: false
+
+    - name: Change theme to steef
+      ignore_errors: true
+      shell: "zsh -ic 'echo zmodule steef >> ~/zimrc && zimf install'"
+      args:
+        executable: /usr/bin/zsh
+      register: shell_result
+    

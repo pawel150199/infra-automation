@@ -1,13 +1,12 @@
-# Information for all hosts
-
+# information for all hosts
 # Container name
-container_name: <container_name>
+container_name: root_app_1
 
 # Nextcloud config
-nextcloud_port: <nextcloud_port>
+nextcloud_port: 30821
 
 # Mysql config
-mysql_user: <mysql_user>
-mysql_password: <password>
-mysql_database: <database>
-mysql_host: <host>
+mysql_user: <USER
+mysql_password: <PASSWORD>
+mysql_database: <DATABASE>
+mysql_host: 192.168.1.1

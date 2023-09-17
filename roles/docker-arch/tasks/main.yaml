@@ -1,0 +1,43 @@
+---
+- name: Install docker, docker-compose and ctop
+  pacman:
+    update_cache: true
+    name:
+      - docker
+      - docker-compose
+      - ctop
+
+- name: Enable and start docker service
+  service:
+    name: docker
+    state: started
+    enable: true
+
+- name: Create docker group
+  group:
+    name: docker
+    state: present
+
+- name: Create docker user and add to the specific group
+  user:
+    name: docker
+    group: docker
+    state: present
+
+- name: Create /etc/docker file if does not exist
+  file:
+    path: /etc/docker
+    state: directory
+    mode: 0755
+    
+- name: Set default max log size to 250MB and set log rotation
+  copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "50m",
+          "max-file": "5"
+        }
+      }
