@@ -6,7 +6,7 @@ container_name: root_app_1
 nextcloud_port: 30821
 
 # Mysql config
-mysql_user: <USER
+mysql_user: <USER>
 mysql_password: <PASSWORD>
 mysql_database: <DATABASE>
 mysql_host: 192.168.1.1
