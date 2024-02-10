@@ -1,5 +1,5 @@
 ---
-- name: Check if docker is now insttalled
+- name: Check if docker is now installed
   ansible.builtin.command: which docker
   failed_when: false
   changed_when: false
