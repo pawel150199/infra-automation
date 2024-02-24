@@ -2,7 +2,7 @@
 - name: Check if k3s is installed
   systemd:
     name: k3s
-    state: "started"
+    state: started
   register: k3s_service_status
   ignore_errors: true
 

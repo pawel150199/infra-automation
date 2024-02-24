@@ -1,0 +1,8 @@
+---
+- name: K3S Installation
+  hosts: rasspberrypi
+  become: true
+  
+  roles:
+    - role: ../roles/docker
+    - role: ../roles/k3s
