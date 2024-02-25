@@ -1,0 +1,11 @@
+---
+- name: Download GPG
+  ansible.builtin.apt_key:
+    url: "{{ docker_raspbian_gpg_url}}"
+    keyring: "{{ docker_raspbian_gpg_key_path }}"
+    state: present
+
+- name: Install Docker
+  ansible.builtin.apt:
+    update_cache: true
+    name: "docker-{{ docker_edition }}"

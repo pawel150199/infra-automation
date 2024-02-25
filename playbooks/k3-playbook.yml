@@ -1,8 +1,23 @@
 ---
-- name: K3S Installation
-  hosts: rasspberrypi
+- hosts: rasspberrypi
   become: true
+  vars_prompt:
+
+    - name: install_docker
+      prompt: Install docker (Acept only true and false)?
+      default: "true"
+    
+    - name: install_k3s
+      prompt: Install K3S (Acept only true and false)?
+      default: "true"
   
+  tasks:
+    - name: Debug choosen values
+      debug:
+        msg: "Install docker: {{ install_docker }}\nInstall K3S: {{ install_k3s }}"
+
   roles:
     - role: ../roles/docker
+      when: (install_docker is defined) and (install_docker | bool)
     - role: ../roles/k3s
+      when: (install_k3s is defined) and (install_k3s | bool)

@@ -1,0 +1,24 @@
+---
+- hosts: rasspberrypi
+  become: true
+  tasks:
+    - name: Print hostvars
+      ansible.builtin.debug:
+        var: hostvars
+      when: false
+
+    - name: Print ansible_facts
+      ansible.builtin.debug:
+        var: ansible_facts
+      when: true
+    
+    - name: Print magic variables
+      ansible.builtin.debug:
+        var: "{{ item }}"
+      with_items:
+        - ansible_facts['nodename']
+        - ansible_host
+        - ansible_version
+        - inventory_file
+        - role_name
+      when: false

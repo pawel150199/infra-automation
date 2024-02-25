@@ -26,6 +26,8 @@ docker_compose_path: /usr/local/bin/docker-compose
 
 # Enable repo setup
 docker_add_repo: true
+docker_raspbian_gpg_key_path: /etc/apt/keyrings/docker.gpg
+docker_raspbian_gpg_url: https://download.docker.com/linux/raspbian/gpg
 
 # Docker repo URL.
 docker_repo_url: https://download.docker.com/linux
